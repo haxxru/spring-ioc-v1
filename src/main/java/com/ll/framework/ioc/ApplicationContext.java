@@ -10,8 +10,10 @@ public class ApplicationContext {
     private final Map<String, Object> beans = new HashMap<>();
 
     public ApplicationContext() {
-        beans.put("testPostRepository", new TestPostRepository());
-        beans.put("testPostService", new TestPostService(new TestPostRepository()));
+        TestPostRepository testPostRepository = new TestPostRepository();
+
+        beans.put("testPostRepository", testPostRepository);
+        beans.put("testPostService", new TestPostService(testPostRepository));
     }
 
     public <T> T genBean(String beanName) {
